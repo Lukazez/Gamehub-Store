@@ -1,0 +1,57 @@
+/* Declaración de la Paleta 4: Neón de tienda */
+:root {
+    --color-fondo: #120E1A;
+    --color-superficie: #1E1730;
+    --color-primario: #D6236A;
+    --color-acento: #00D2FF;
+    --color-texto: #F3EFFA;
+    --color-error: #FF7A7A;
+    --radio-borde: 8px;
+    --fuente-principal: system-ui, -apple-system, sans-serif;
+}
+
+/* Reseteo básico y aplicación de variables */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+}
+
+/* Estilos de navegación base */
+header {
+    background-color: var(--color-superficie);
+    padding: 1rem 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex; /* Flexbox exigido en EP1 */
+    gap: 20px;
+}
+
+nav a {
+    color: var(--color-texto);
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--color-acento);
+}
+
+/* Botón primario usando contraste adecuado */
+.boton-primario {
+    background-color: var(--color-primario);
+    color: white; /* Blanco sobre el botón primario exigido */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: var(--radio-borde);
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
