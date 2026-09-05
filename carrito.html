@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - GameHub Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="main.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <!-- Se agregó el span para que el contador funcione aquí también -->
+                <li><a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="ordenes.html">Mis Órdenes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-principal">
+        <section class="seccion-carrito">
+            <h1>Tu Carrito de Compras</h1>
+            
+            <!-- Mensaje de carrito vacío -->
+            <div id="mensaje-vacio" class="mensaje-vacio-texto">
+                Carrito vacío, llénalo en el <a href="catalogo.html">catálogo</a>.
+            </div>
+
+            <!-- ¡AQUÍ ESTÁ EL ARREGLO! Este es el contenedor vital donde el JS inyecta los productos -->
+            <div id="contenedor-productos-carrito"></div>
+
+            <!-- Resumen y Totales -->
+            <aside id="resumen-carrito" class="oculto">
+                <h2>Resumen de la Orden</h2>
+                <div class="bloque-cupon">
+                    <label for="input-cupon">Código de Descuento:</label>
+                    <input type="text" id="input-cupon" placeholder="Ej: SETUP2026">
+                    <button id="btn-aplicar-cupon" class="boton-secundario">Aplicar</button>
+                    <p id="mensaje-cupon" class="mensaje-error"></p>
+                </div>
+                
+                <div class="totales">
+                    <p>Subtotal: $<span id="txt-subtotal">0</span></p>
+                    <p>Descuento: -$<span id="txt-descuento">0</span></p>
+                    <h3>Total: $<span id="txt-total">0</span></h3>
+                </div>
+
+                <div class="acciones-carrito">
+                    <button id="btn-vaciar" class="boton-peligro">Vaciar Carrito</button>
+                    <a href="checkout.html" class="boton-primario">Ir a Pagar</a>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GameHub Store. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="carrito.js"></script>
+</body>
+</html>
