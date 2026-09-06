@@ -1,45 +1,15 @@
-<<<<<<< HEAD
-/* Declaración de la Paleta 4: Neón de tienda */
-:root {
-    --color-fondo: #120E1A;
-    --color-superficie: #1E1730;
-    --color-primario: #D6236A;
-    --color-acento: #00D2FF;
-    --color-texto: #F3EFFA;
-    --color-error: #FF7A7A;
-=======
 /* --- PALETA DE COLORES: PALETA 4 (Neón de tienda) --- */
 :root {
     --color-fondo: #120E1A;       /* Violeta oscuro para el fondo base */
     --color-superficie: #1E1730;  /* Violeta un poco más claro para tarjetas/contenedores */
     --color-primario: #D6236A;    /* Magenta para acciones principales */
-    --color-acento: #00D2FF;      /* Cian para destacar precios o links */
+    --color-acento: #004ffa;      /* Cian para destacar precios o links */
     --color-texto: #F3EFFA;       /* Blanco/Gris claro para lectura */
     --color-error: #FF7A7A;       /* Rojo/Salmón para errores y alertas */
->>>>>>> 84c4ccd33c43a374f71b236ae6513008221899ff
     --radio-borde: 8px;
     --fuente-principal: system-ui, -apple-system, sans-serif;
 }
 
-<<<<<<< HEAD
-/* Reseteo básico y aplicación de variables */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    font-family: var(--fuente-principal);
-}
-
-/* Estilos de navegación base */
-header {
-    background-color: var(--color-superficie);
-    padding: 1rem 2rem;
-=======
 /* --- ESTILOS BASE Y ESTRUCTURA --- */
 * {
     margin: 0;
@@ -69,40 +39,17 @@ header {
     background-color: var(--color-superficie);
     padding: 1rem 2rem;
     border-bottom: 2px solid var(--color-primario);
->>>>>>> 84c4ccd33c43a374f71b236ae6513008221899ff
 }
 
 nav ul {
     list-style: none;
-<<<<<<< HEAD
-    display: flex; /* Flexbox exigido en EP1 */
-=======
     display: flex;
->>>>>>> 84c4ccd33c43a374f71b236ae6513008221899ff
     gap: 20px;
 }
 
 nav a {
     color: var(--color-texto);
     text-decoration: none;
-<<<<<<< HEAD
-}
-
-nav a:hover {
-    color: var(--color-acento);
-}
-
-/* Botón primario usando contraste adecuado */
-.boton-primario {
-    background-color: var(--color-primario);
-    color: white; /* Blanco sobre el botón primario exigido */
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: var(--radio-borde);
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-=======
     font-weight: bold;
     transition: color 0.3s;
 }
@@ -482,5 +429,4 @@ footer {
     .subtotal-linea p {
         text-align: center;
     }
->>>>>>> 84c4ccd33c43a374f71b236ae6513008221899ff
 }
