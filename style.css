@@ -1,16 +1,32 @@
-/* --- PALETA DE COLORES: PALETA 4 (Neón de tienda) --- */
+/* =========================================================
+   PALETA FUTURISTA / MINIMALISTA
+   ========================================================= */
 :root {
-    --color-fondo: #120E1A;       /* Violeta oscuro para el fondo base */
-    --color-superficie: #1E1730;  /* Violeta un poco más claro para tarjetas/contenedores */
-    --color-primario: #D6236A;    /* Magenta para acciones principales */
-    --color-acento: #00D2FF;      /* Cian para destacar precios o links */
-    --color-texto: #F3EFFA;       /* Blanco/Gris claro para lectura */
-    --color-error: #FF7A7A;       /* Rojo/Salmón para errores y alertas */
+    --color-fondo: #050505;
+    --color-superficie: #1C1C1C;
+    --color-superficie-hover: #242424;
+    --color-borde: #3F3F46;
+
+    --color-primario: #00E5FF;
+    --color-acento: #00E5FF;
+
+    --color-texto: #F4F4F5;
+    --color-texto-secundario: #A1A1AA;
+
+    --color-error: #FF4D6D;
+
     --radio-borde: 8px;
-    --fuente-principal: system-ui, -apple-system, sans-serif;
+    --fuente-principal: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --sombra-cian: 0 0 20px rgba(0, 229, 255, 0.12);
+    --sombra-cian-fuerte: 0 0 25px rgba(0, 229, 255, 0.25);
 }
 
-/* --- ESTILOS BASE Y ESTRUCTURA --- */
+
+/* =========================================================
+   ESTILOS BASE
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,87 +34,163 @@
     font-family: var(--fuente-principal);
 }
 
-body { 
-    background-color: var(--color-fondo); 
-    color: var(--color-texto); 
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa al menos el 100% de la altura de la pantalla */
+
+    min-height: 100vh;
 }
 
+
+/* =========================================================
+   CONTENIDO PRINCIPAL
+   ========================================================= */
+
 main {
-    flex: 1; /* Permite que el contenido principal crezca y empuje el footer hacia abajo */
+    flex: 1;
+
     padding: 2rem;
     max-width: 1200px;
+
     margin: 0 auto;
     width: 100%;
 }
 
-/* --- NAVEGACIÓN (CABECERA) --- */
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+
 header {
     background-color: var(--color-superficie);
+
     padding: 1rem 2rem;
-    border-bottom: 2px solid var(--color-primario);
+
+    border-bottom: 1px solid var(--color-borde);
+
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
 }
 
 nav ul {
     list-style: none;
+
     display: flex;
     gap: 20px;
 }
 
 nav a {
     color: var(--color-texto);
+
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+
+    transition: color 0.25s ease;
 }
 
-nav a:hover, nav a.activo {
+nav a:hover,
+nav a.activo {
     color: var(--color-acento);
+
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
 }
 
-/* --- COMPONENTES GENÉRICOS --- */
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
 .boton-primario {
     background-color: var(--color-primario);
-    color: #F3EFFA; 
+
+    color: #050505;
+
     border: none;
     border-radius: var(--radio-borde);
+
     cursor: pointer;
-    font-weight: bold;
-    transition: filter 0.3s;
+
+    font-weight: 700;
+
     padding: 10px 20px;
+
     text-align: center;
     display: inline-block;
+
     text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
 }
 
 .boton-primario:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--sombra-cian-fuerte);
 }
+
 
 .boton-secundario {
     background-color: transparent;
+
     color: var(--color-acento);
+
     border: 1px solid var(--color-acento);
+
     padding: 8px 16px;
+
     border-radius: var(--radio-borde);
+
     cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.boton-secundario:hover {
+    background-color: rgba(0, 229, 255, 0.08);
+
+    box-shadow: var(--sombra-cian);
+}
+
+
 .boton-peligro {
-    background-color: var(--color-error);
-    color: #120E1A; 
+    background-color:  #e5dbdd;
+
+    color: #000000;
+
     padding: 8px 16px;
+
     border: none;
+
     border-radius: var(--radio-borde);
+
     cursor: pointer;
+
     font-weight: bold;
 }
 
-.mensaje-error { 
-    color: var(--color-error); 
+.boton-peligro:hover {
+    filter: brightness(1.1);
+}
+
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+.mensaje-error {
+    color: var(--color-error);
+
     font-size: 0.9rem;
+
     margin-top: 5px;
 }
 
@@ -106,30 +198,49 @@ nav a:hover, nav a.activo {
     display: none !important;
 }
 
-/* --- VISTA: CARRITO DE COMPRAS --- */
+
+/* =========================================================
+   CARRITO
+   ========================================================= */
+
 .seccion-carrito {
     display: grid;
+
     grid-template-columns: 2fr 1fr;
+
     gap: 2rem;
 }
 
 .seccion-carrito > h1 {
-    grid-column: 1 / -1; 
+    grid-column: 1 / -1;
+
     text-align: center;
+
     margin-bottom: 1rem;
-    color: var(--color-primario);
+
+    color: var(--color-acento);
+
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
 }
+
 
 .mensaje-vacio-texto {
     grid-column: 1 / -1;
+
     text-align: center;
+
     font-size: 1.2rem;
+
     margin-top: 2rem;
+
+    color: var(--color-texto-secundario);
 }
 
 .mensaje-vacio-texto a {
     color: var(--color-acento);
+
     text-decoration: none;
+
     font-weight: bold;
 }
 
@@ -137,104 +248,192 @@ nav a:hover, nav a.activo {
     text-decoration: underline;
 }
 
-/* Diseño Estructurado de la Línea del Carrito */
+
+/* =========================================================
+   LÍNEA DEL CARRITO
+   ========================================================= */
+
 .linea-carrito {
     display: grid;
+
     grid-template-columns: 80px 2fr 1fr 1fr auto;
+
     gap: 1.5rem;
+
     align-items: center;
+
     background-color: var(--color-superficie);
+
     padding: 1.5rem;
+
     margin-bottom: 1.5rem;
+
     border-radius: var(--radio-borde);
-    border: 1px solid #332854;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+
+    border: 1px solid var(--color-borde);
+
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.2s ease;
 }
 
 .linea-carrito:hover {
-    border-color: var(--color-primario);
-    box-shadow: 0 0 15px rgba(214, 35, 106, 0.15); 
-    transform: translateX(5px); 
+    border-color: var(--color-acento);
+
+    box-shadow: var(--sombra-cian);
+
+    transform: translateX(5px);
 }
+
 
 .linea-carrito img {
     width: 80px;
     height: 80px;
+
     object-fit: cover;
+
     border-radius: var(--radio-borde);
+
     background-color: var(--color-fondo);
-    border: 1px solid #332854;
+
+    border: 1px solid var(--color-borde);
 }
+
 
 .info-producto h3 {
     font-size: 1.15rem;
+
     margin-bottom: 0.5rem;
+
     color: var(--color-texto);
 }
 
 .info-producto p {
-    color: #A094B8; 
+    color: var(--color-texto-secundario);
+
     font-size: 0.95rem;
 }
 
+
+/* =========================================================
+   CONTROL DE CANTIDAD
+   ========================================================= */
+
 .control-cantidad {
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 }
 
 .control-cantidad label {
     font-size: 0.85rem;
+
     margin-bottom: 0.3rem;
-    color: var(--color-acento); 
+
+    color: var(--color-acento);
 }
 
 .control-cantidad input {
     width: 65px;
+
     padding: 8px;
+
     background-color: var(--color-fondo);
+
     color: var(--color-texto);
-    border: 1px solid var(--color-acento);
+
+    border: 1px solid var(--color-borde);
+
     border-radius: 4px;
+
     text-align: center;
+
     font-weight: bold;
+
+    transition: border-color 0.2s ease;
 }
+
+.control-cantidad input:focus {
+    outline: none;
+
+    border-color: var(--color-acento);
+
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.15);
+}
+
 
 .stock-disponible {
     font-size: 0.75rem;
-    color: #A094B8;
+
+    color: var(--color-texto-secundario);
+
     margin-top: 5px;
 }
 
+
+/* =========================================================
+   SUBTOTAL
+   ========================================================= */
+
 .subtotal-linea p {
     font-size: 1.25rem;
+
     font-weight: bold;
-    color: var(--color-primario); 
+
+    color: var(--color-acento);
+
     text-align: right;
 }
+
+
+/* =========================================================
+   BOTÓN QUITAR
+   ========================================================= */
 
 .btn-quitar {
     width: 40px;
     height: 40px;
-    border-radius: 50%; 
+
+    border-radius: 50%;
+
     display: flex;
+
     justify-content: center;
     align-items: center;
+
     font-size: 1.2rem;
-    transition: transform 0.2s;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .btn-quitar:hover {
     transform: scale(1.1);
+
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.25);
 }
 
-/* Resumen del carrito (Totales) */
+
+/* =========================================================
+   RESUMEN DEL CARRITO
+   ========================================================= */
+
 #resumen-carrito {
     background-color: var(--color-superficie);
+
     padding: 1.5rem;
+
     border-radius: var(--radio-borde);
+
+    border: 1px solid var(--color-borde);
+
     height: fit-content;
 }
+
 
 .bloque-cupon {
     margin: 1.5rem 0;
@@ -242,190 +441,518 @@ nav a:hover, nav a.activo {
 
 .bloque-cupon input {
     width: 100%;
+
     padding: 8px;
+
     margin: 8px 0;
+
     background-color: var(--color-fondo);
+
     color: var(--color-texto);
-    border: 1px solid #332854;
+
+    border: 1px solid var(--color-borde);
+
     border-radius: 4px;
 }
 
+.bloque-cupon input:focus {
+    outline: none;
+
+    border-color: var(--color-acento);
+}
+
+
 .totales {
     margin-bottom: 1.5rem;
-    border-top: 1px solid #332854;
+
+    border-top: 1px solid var(--color-borde);
+
     padding-top: 1rem;
 }
 
 .totales h3 {
-    color: var(--color-acento); 
+    color: var(--color-acento);
+
     margin-top: 10px;
+
     font-size: 1.5rem;
 }
 
+
 .acciones-carrito {
     display: flex;
+
     flex-direction: column;
+
     gap: 10px;
 }
 
-/* --- VISTA: CATÁLOGO DE PRODUCTOS --- */
+
+/* =========================================================
+   CATÁLOGO
+   ========================================================= */
+
 .layout-catalogo {
     display: grid;
+
     grid-template-columns: 250px 1fr;
+
     gap: 2rem;
+
     align-items: start;
 }
 
+
 .panel-filtros {
     background-color: var(--color-superficie);
+
     padding: 1.5rem;
+
     border-radius: var(--radio-borde);
-    border: 1px solid #332854;
+
+    border: 1px solid var(--color-borde);
 }
+
 
 .grupo-filtro {
     margin-bottom: 1.2rem;
+
     display: flex;
+
     flex-direction: column;
 }
 
 .grupo-filtro label {
     margin-bottom: 0.5rem;
+
     font-weight: bold;
-    color: var(--color-acento); 
+
+    color: var(--color-acento);
 }
 
 .grupo-filtro select,
 .grupo-filtro input {
     padding: 8px;
+
     background-color: var(--color-fondo);
+
     color: var(--color-texto);
-    border: 1px solid #332854;
+
+    border: 1px solid var(--color-borde);
+
     border-radius: 4px;
+
     margin-bottom: 5px;
 }
 
+.grupo-filtro select:focus,
+.grupo-filtro input:focus {
+    outline: none;
+
+    border-color: var(--color-acento);
+}
+
+
+/* =========================================================
+   PRODUCTOS
+   ========================================================= */
+
 .grilla-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+
     gap: 1.5rem;
 }
 
+
 .tarjeta-producto {
     background-color: var(--color-superficie);
+
     border-radius: var(--radio-borde);
+
     padding: 1rem;
+
     text-align: center;
-    border: 1px solid #332854;
-    transition: transform 0.2s;
+
+    border: 1px solid var(--color-borde);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .tarjeta-producto:hover {
     transform: translateY(-5px);
+
+    border-color: var(--color-acento);
+
+    box-shadow: var(--sombra-cian);
 }
+
 
 .tarjeta-producto img {
     width: 100%;
+
     height: 200px;
+
     object-fit: cover;
+
     border-radius: var(--radio-borde);
+
     margin-bottom: 1rem;
 }
 
+
 .info-tarjeta h3 {
     font-size: 1.1rem;
+
     margin-bottom: 0.5rem;
-    height: 40px; 
+
+    height: 40px;
 }
+
 
 .precio {
     font-size: 1.2rem;
+
     font-weight: bold;
-    color: var(--color-primario); 
+
+    color: var(--color-acento);
+
     margin-bottom: 0.5rem;
 }
 
+
 .stock-ok {
-    color: var(--color-acento); 
+    color: var(--color-acento);
+
     font-size: 0.9rem;
+
     margin-bottom: 1rem;
 }
 
 .stock-nulo {
-    color: var(--color-error); 
+    color: var(--color-error);
+
     font-size: 0.9rem;
+
     margin-bottom: 1rem;
 }
 
+
 .boton-deshabilitado {
-    background-color: #332854; 
-    color: #A094B8;
+    background-color: var(--color-borde);
+
+    color: var(--color-texto-secundario);
+
     padding: 10px;
+
     border: none;
+
     border-radius: var(--radio-borde);
+
     cursor: not-allowed;
+
     width: 100%;
 }
+
 
 .contenedor-cargar-mas {
     text-align: center;
+
     margin-top: 2rem;
 }
 
-/* --- FOOTER --- */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer {
     text-align: center;
+
     padding: 1.5rem;
+
     background-color: var(--color-superficie);
-    border-top: 2px solid var(--color-primario);
+
+    border-top: 1px solid var(--color-borde);
+
     margin-top: 2rem;
+
     width: 100%;
+
+    color: var(--color-texto-secundario);
 }
 
-/* --- RESPONSIVIDAD (MÓVILES) --- */
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+
+.seccion-checkout {
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+
+    gap: 2rem;
+
+    align-items: start;
+
+    margin-top: 1.5rem;
+}
+
+
+.seccion-checkout fieldset {
+    border: 1px solid var(--color-borde);
+
+    border-radius: var(--radio-borde);
+
+    background-color: var(--color-superficie);
+
+    padding: 1.5rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.seccion-checkout legend {
+    color: var(--color-acento);
+
+    font-weight: bold;
+
+    padding: 0 0.5rem;
+}
+
+
+.campo-formulario {
+    margin-bottom: 1.2rem;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.campo-formulario label {
+    margin-bottom: 0.4rem;
+
+    font-weight: bold;
+}
+
+
+.campo-formulario input,
+.campo-formulario select {
+    padding: 10px;
+
+    background-color: var(--color-fondo);
+
+    color: var(--color-texto);
+
+    border: 1px solid var(--color-borde);
+
+    border-radius: 4px;
+}
+
+
+.campo-formulario input:focus,
+.campo-formulario select:focus {
+    outline: none;
+
+    border-color: var(--color-acento);
+
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.12);
+}
+
+
+.campo-formulario .campo-invalido {
+    border-color: var(--color-error);
+}
+
+
+.texto-ayuda {
+    font-size: 0.8rem;
+
+    color: var(--color-texto-secundario);
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   MÉTODOS DE PAGO
+   ========================================================= */
+
+.opciones-pago {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.75rem;
+}
+
+
+.opcion-pago {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    font-weight: normal;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESUMEN CHECKOUT
+   ========================================================= */
+
+#resumen-checkout {
+    background-color: var(--color-superficie);
+
+    padding: 1.5rem;
+
+    border-radius: var(--radio-borde);
+
+    border: 1px solid var(--color-borde);
+
+    height: fit-content;
+
+    position: sticky;
+
+    top: 1rem;
+}
+
+
+.linea-resumen {
+    padding: 0.5rem 0;
+
+    border-bottom: 1px solid var(--color-borde);
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   CONFIRMACIÓN
+   ========================================================= */
+
+#confirmacion-orden {
+    text-align: center;
+
+    background-color: var(--color-superficie);
+
+    padding: 3rem 2rem;
+
+    border-radius: var(--radio-borde);
+
+    border: 1px solid var(--color-borde);
+
+    margin-top: 1.5rem;
+
+    box-shadow: var(--sombra-cian);
+}
+
+
+#confirmacion-orden h2 {
+    color: var(--color-acento);
+
+    margin-bottom: 1rem;
+
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+
+#confirmacion-orden p {
+    margin-bottom: 1.5rem;
+
+    color: var(--color-texto-secundario);
+}
+
+
+/* =========================================================
+   RESPONSIVIDAD
+   ========================================================= */
+
 @media (max-width: 768px) {
-    .seccion-carrito, .layout-catalogo {
+
+    .seccion-carrito,
+    .layout-catalogo,
+    .seccion-checkout {
         grid-template-columns: 1fr;
     }
 
-    /* Ajuste de la línea del carrito para móviles */
+
     .linea-carrito {
         grid-template-columns: 80px 1fr auto;
-        grid-template-rows: auto auto auto;
+
+        grid-template-rows:
+            auto
+            auto
+            auto;
+
         gap: 1rem;
     }
 
+
     .info-producto {
         grid-column: 2;
+
         grid-row: 1;
     }
+
 
     .btn-quitar {
         grid-column: 3;
+
         grid-row: 1;
     }
 
+
     .control-cantidad {
         grid-column: 1 / -1;
+
         grid-row: 2;
+
         flex-direction: row;
+
         justify-content: space-between;
+
         background-color: var(--color-fondo);
+
         padding: 10px;
+
         border-radius: var(--radio-borde);
     }
 
-    .control-cantidad label { margin: 0; }
-    .stock-disponible { margin: 0; }
+
+    .control-cantidad label {
+        margin: 0;
+    }
+
+
+    .stock-disponible {
+        margin: 0;
+    }
+
 
     .subtotal-linea {
         grid-column: 1 / -1;
+
         grid-row: 3;
+
         text-align: center;
-        border-top: 1px dashed #332854;
+
+        border-top: 1px dashed var(--color-borde);
+
         padding-top: 10px;
     }
-    
+
+
     .subtotal-linea p {
         text-align: center;
     }

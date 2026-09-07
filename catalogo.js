@@ -1,11 +1,11 @@
 // Arreglo de datos simulado (Requisito EP1)
 const baseProductos = [
-    { id: 1, nombre: "Mouse Ajazz 139 Pro", categoria: "perifericos", marca: "ajazz", precio: 45000, stock: 5, imagen: "img/mouse-ajazz.webp" },
-    { id: 2, nombre: "Pad Mouse ATK Sky XSoft", categoria: "perifericos", marca: "atk", precio: 32000, stock: 3, imagen: "img/Pad Mouse ATK Sky XSoft.webp" },
-    { id: 3, nombre: "Monitor ASUS TUF 24\"", categoria: "monitores", marca: "asus", precio: 180000, stock: 0, imagen: "img/Monitor ASUS TUF 24.jpg" },
-    { id: 4, nombre: "Teclado Ajazz AK820", categoria: "perifericos", marca: "ajazz", precio: 55000, stock: 10, imagen: "img/Teclado Ajazz AK820.avif" },
-    { id: 5, nombre: "Tarjeta Gráfica ASUS RTX 4060", categoria: "componentes", marca: "asus", precio: 350000, stock: 2, imagen: "img/Tarjeta Gráfica ASUS RTX 4060.jpg" },
-    { id: 6, nombre: "Mouse ATK Blazing Sky", categoria: "perifericos", marca: "atk", precio: 48000, stock: 7, imagen: "img/mouse-atk-blazing.jpg" }
+    { id: 1, nombre: "Mouse Ajazz 139 Pro", categoria: "perifericos", marca: "ajazz", precio: 45000, stock: 5, imagen: "images/mouse-ajazz.jpg" },
+    { id: 2, nombre: "Pad Mouse ATK Sky XSoft", categoria: "perifericos", marca: "atk", precio: 32000, stock: 3, imagen: "images/Pad Mouse ATK Sky XSoft.jpg" },
+    { id: 3, nombre: "Monitor ASUS TUF 24\"", categoria: "monitores", marca: "asus", precio: 180000, stock: 0, imagen: "images/Monitor ASUS TUF 24.jpg" },
+    { id: 4, nombre: "Teclado Ajazz AK820", categoria: "perifericos", marca: "ajazz", precio: 55000, stock: 10, imagen: "images/Teclado Ajazz AK820.avif" },
+    { id: 5, nombre: "Tarjeta Gráfica ASUS RTX 4060", categoria: "componentes", marca: "asus", precio: 350000, stock: 2, imagen: "images/Tarjeta Gráfica ASUS RTX 4060.jpg" },
+    { id: 6, nombre: "Mouse ATK Blazing Sky", categoria: "perifericos", marca: "atk", precio: 48000, stock: 7, imagen: "images/mouse-atk-blazing.jpg" }
 ];
 
 let productosFiltrados = [...baseProductos];

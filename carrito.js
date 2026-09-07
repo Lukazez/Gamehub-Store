@@ -102,6 +102,7 @@ btnVaciar.addEventListener('click', () => {
     mensajeCupon.textContent = '';
     inputCupon.value = '';
     guardarEnLocal();
+    localStorage.removeItem('gamehub_cupon'); // El checkout ya no debe heredar un cupón de un carrito vaciado
     renderizarCarrito();
 });
 
@@ -111,11 +112,14 @@ btnAplicarCupon.addEventListener('click', () => {
     if (cuponesValidos[codigo]) {
         descuentoActual = cuponesValidos[codigo];
         mensajeCupon.textContent = "¡Cupón aplicado exitosamente!";
-        mensajeCupon.style.color = "var(--color-acento)"; 
+        mensajeCupon.style.color = "var(--color-acento)";
+        // Guardamos el cupón para que el checkout aplique el mismo descuento
+        localStorage.setItem('gamehub_cupon', JSON.stringify({ codigo, descuento: descuentoActual }));
     } else {
         descuentoActual = 0;
         mensajeCupon.textContent = "Cupón vencido o inexistente.";
         mensajeCupon.style.color = "var(--color-error)";
+        localStorage.removeItem('gamehub_cupon');
     }
     calcularTotales();
 });
