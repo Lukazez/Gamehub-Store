@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Órdenes - GameHub Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="ordenes.html" class="activo">Mis Órdenes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contenedor-principal">
+        <h1>Mis Órdenes</h1>
+        <section id="ordenes-section" class="ordenes-section">
+            <!-- Aquí se inyectarán las órdenes con JS (simulado) -->
+            <div id="mensaje-vacio-ordenes" class="mensaje-vacio-ordenes">
+                No tienes órdenes aún. ¡Realiza tu primera compra en el <a href="catalogo.html">catálogo</a>!
+            </div>
+            <table id="tabla-ordenes">
+                <thead>
+                    <tr>
+                        <th>Número de Orden</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filas se insertarán dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GameHub Store. Todos los derechos reservados.</p>
+        <p>Contacto: soporte@gamehubstore.cl</p>
+    </footer>
+
+    <script>
+        // Simulación de órdenes guardadas en localStorage (clave: gamehub_ordenes)
+        const ordenes = JSON.parse(localStorage.getItem('gamehub_ordenes')) || [];
+
+        const mensajeVacio = document.getElementById('mensaje-vacio-ordenes');
+        const tablaOrdenes = document.getElementById('tabla-ordenes');
+        const tbody = tablaOrdenes.querySelector('tbody');
+
+        if (ordenes.length === 0) {
+            mensajeVacio.style.display = 'block';
+            tablaOrdenes.classList.add('oculto');
+        } else {
+            mensajeVacio.style.display = 'none';
+            tablaOrdenes.classList.remove('oculto');
+
+            ordenes.forEach(orden => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${orden.numero}</td>
+                    <td>${orden.fecha}</td>
+                    <td>$${orden.total.toLocaleString('es-CL')}</td>
+                    <td>${orden.estado}</td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        // Actualizar contador del carrito en el nav (reutilizando lógica de carrito.js)
+        const carrito = JSON.parse(localStorage.getItem('gamehub_carrito')) || [];
+        const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+        const contadorCarritoMenu = document.getElementById('contador-carrito');
+        if (contadorCarritoMenu) {
+            contadorCarritoMenu.textContent = `(${totalItems})`;
+        }
+    </script>
+</body>
+</html>

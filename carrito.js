@@ -62,7 +62,10 @@ function renderizarCarrito() {
             <div class="subtotal-linea">
                 <p>$${subtotalLinea.toLocaleString('es-CL')}</p>
             </div>
-            <button class="boton-peligro btn-quitar" onclick="quitarProducto(${index})">X</button>
+            <button class="boton-peligro btn-quitar" onclick="quitarProducto(${index})" aria-label="Quitar producto">
+                <span class="oculto">Quitar producto</span>
+                X
+            </button>
         `;
         contenedorProductos.appendChild(articulo);
     });
@@ -108,17 +111,19 @@ btnVaciar.addEventListener('click', () => {
 
 btnAplicarCupon.addEventListener('click', () => {
     const codigo = inputCupon.value.trim().toUpperCase();
-    
+
     if (cuponesValidos[codigo]) {
         descuentoActual = cuponesValidos[codigo];
         mensajeCupon.textContent = "¡Cupón aplicado exitosamente!";
-        mensajeCupon.style.color = "var(--color-acento)";
+        mensajeCupon.classList.remove('mensaje-error');
+        mensajeCupon.classList.add('mensaje-exito');
         // Guardamos el cupón para que el checkout aplique el mismo descuento
         localStorage.setItem('gamehub_cupon', JSON.stringify({ codigo, descuento: descuentoActual }));
     } else {
         descuentoActual = 0;
         mensajeCupon.textContent = "Cupón vencido o inexistente.";
-        mensajeCupon.style.color = "var(--color-error)";
+        mensajeCupon.classList.remove('mensaje-exito');
+        mensajeCupon.classList.add('mensaje-error');
         localStorage.removeItem('gamehub_cupon');
     }
     calcularTotales();

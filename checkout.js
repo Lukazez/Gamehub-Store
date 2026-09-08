@@ -176,15 +176,34 @@ function manejarEnvio(evento) {
 // ------- Confirmación simulada de la orden (EP1: sin backend real) -------
 function confirmarOrden() {
     const numeroOrden = 'GH-' + Date.now().toString().slice(-6);
+    const fechaOrden = new Date().toLocaleDateString('es-CL');
     const correoIngresado = document.getElementById('input-correo').value.trim();
+    const totalElement = document.getElementById('checkout-total');
+    const total = parseFloat(totalElement.textContent.replace(/\$|\./g, ''));
 
+    // Construir el objeto orden
+    const orden = {
+        numero: numeroOrden,
+        fecha: fechaOrden,
+        total: total,
+        estado: 'Pendiente'
+    };
+
+    // Recuperar órdenes existentes o crear arreglo vacío
+    const ordenesPrevias = JSON.parse(localStorage.getItem('gamehub_ordenes')) || [];
+
+    // Añadir la nueva orden y guardar
+    ordenesPrevias.push(orden);
+    localStorage.setItem('gamehub_ordenes', JSON.stringify(ordenesPrevias));
+
+    // Mostrar confirmación al usuario
     document.getElementById('numero-orden').textContent = numeroOrden;
     document.getElementById('correo-confirmacion').textContent = correoIngresado;
 
     contenidoCheckout.classList.add('oculto');
     confirmacionOrden.classList.remove('oculto');
 
-    // Se vacía el carrito simulado tras confirmar la compra
+    // Vaciar carrito y cupón tras confirmar la compra
     localStorage.removeItem('gamehub_carrito');
     localStorage.removeItem('gamehub_cupon');
     if (contadorCarritoMenu) contadorCarritoMenu.textContent = '(0)';
