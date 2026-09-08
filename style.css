@@ -79,22 +79,50 @@ nav ul {
 
     display: flex;
     gap: 20px;
+    align-items: center;
+    height: 100%;
 }
 
 nav a {
     color: var(--color-texto);
 
     text-decoration: none;
-    font-weight: bold;
-
-    transition: color 0.25s ease;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radio-borde);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-nav a:hover,
+nav a:hover {
+    color: var(--color-acento);
+    background-color: rgba(0, 229, 255, 0.1);
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+}
+
 nav a.activo {
     color: var(--color-acento);
-
+    background-color: rgba(0, 229, 255, 0.2);
     text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    box-shadow: var(--sombra-cian);
+}
+
+nav a.activo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--color-acento);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.activo::after {
+    width: 40%;
 }
 
 
@@ -193,7 +221,12 @@ nav a.activo {
 
     margin-top: 5px;
 }
-
+.mensaje-exito {
+        color: var(--color-acento);
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+    
 .oculto {
     display: none !important;
 }
@@ -233,11 +266,11 @@ nav a.activo {
 
     margin-top: 2rem;
 
-    color: var(--color-texto-secundario);
+    color: #020202;
 }
 
 .mensaje-vacio-texto a {
-    color: var(--color-acento);
+    color: #000000;
 
     text-decoration: none;
 
@@ -873,6 +906,124 @@ footer {
     color: var(--color-texto-secundario);
 }
 
+
+/* =========================================================
+   ÓRDENES
+   ========================================================= */
+
+.ordenes-section {
+    margin: 2rem 0;
+}
+
+.ordenes-section h1 {
+    color: var(--color-acento);
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#tabla-ordenes {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+#tabla-ordenes th,
+#tabla-ordenes td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+#tabla-ordenes th {
+    background-color: var(--color-fondo);
+    color: var(--color-acento);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--color-acento);
+}
+
+#tabla-ordenes tbody tr {
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+#tabla-ordenes tbody tr:hover {
+    background-color: rgba(0, 229, 255, 0.05);
+    transform: translateX(5px);
+}
+
+#tabla-ordenes tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#tabla-ordenes td {
+    color: var(--color-texto);
+}
+
+#tabla-ordenes td:nth-child(4) {
+    /* Estado column */
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.estado-pendiente {
+    color: #FFB74D;
+}
+
+.estado-procesando {
+    color: var(--color-acento);
+}
+
+.estado-enviado {
+    color: #4CAF50;
+}
+
+.estado-entregado {
+    color: #8BC34A;
+}
+
+.estado-cancelado {
+    color: var(--color-error);
+}
+
+.mensaje-vacio-ordenes {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+}
+
+.mensaje-vacio-ordenes a {
+    color: var(--color-acento);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dashed var(--color-acento);
+}
+
+.mensaje-vacio-ordenes a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+/* Animación sutil para las filas de la tabla */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* =========================================================
    RESPONSIVIDAD
