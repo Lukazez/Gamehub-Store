@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - GameHub Store</title>
+    <!-- Vinculamos la hoja de estilos externa -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Encabezado con navegación común requerida -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="ordenes.html">Mis Órdenes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Banner principal -->
+        <section class="hero section">
+            <div class="hero-content">
+                <img src="images/logo.svg" alt="Logo de GameHub Store" class="hero-logo">
+                <h1>Bienvenido a GameHub Store</h1>
+                <p>El mejor hardware y periféricos para tu setup.</p>
+                <button class="boton-primario" onclick="location.href='catalogo.html'">Ver Catálogo</button>
+            </div>
+        </section>
+
+        <!-- Sección de productos destacados -->
+        <section id="productos-destacados">
+            <h2>Productos Destacados</h2>
+            <div id="contenedor-destacados" class="productos-destacados-grid">
+                <!-- Producto 1 -->
+                <article class="tarjeta-producto">
+                    <div class="product-image-wrapper">
+                        <img src="images/mouse-ajazz.jpg" alt="Mouse Ajazz 139 Pro" loading="lazy">
+                    </div>
+                    <div class="info-tarjeta">
+                        <h3>Mouse Ajazz 139 Pro</h3>
+                        <p class="precio">$45.000</p>
+                        <p class="stock stock-ok">Stock: 5 uds.</p>
+                        <button class="boton-primario" onclick="agregarAlCarritoInicio(1)">Agregar al Carrito</button>
+                    </div>
+                </article>
+                <!-- Producto 2 -->
+                <article class="tarjeta-producto">
+                    <div class="product-image-wrapper">
+                        <img src="images/Pad Mouse ATK Sky XSoft.jpg" alt="Pad Mouse ATK Sky XSoft" loading="lazy">
+                    </div>
+                    <div class="info-tarjeta">
+                        <h3>Pad Mouse ATK Sky XSoft</h3>
+                        <p class="precio">$32.000</p>
+                        <p class="stock stock-ok">Stock: 3 uds.</p>
+                        <button class="boton-primario" onclick="agregarAlCarritoInicio(2)">Agregar al Carrito</button>
+                    </div>
+                </article>
+                <!-- Producto 3 -->
+                <article class="tarjeta-producto">
+                    <div class="product-image-wrapper">
+                        <img src="images/Monitor ASUS TUF 24.jpg" alt="Monitor ASUS TUF 24" loading="lazy">
+                    </div>
+                    <div class="info-tarjeta">
+                        <h3>Monitor ASUS TUF 24"</h3>
+                        <p class="precio">$180.000</p>
+                        <p class="stock stock-nulo">Agotado</p>
+                        <button class="boton-primario" onclick="agregarAlCarritoInicio(3)" disabled>Agregar al Carrito</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de video tecnológico -->
+        <section class="video-promocional">
+            <h2>Video Relacionado</h2>
+            <div class="video-wrapper" id="video-promo" onclick="location.href='https://youtu.be/dQw4w9WgXcQ'">
+                <!-- Miniatura (lazy‑load) -->
+                <img src="images/yt-thumbnail.jpg"
+                     alt="Vista previa del video tecnológico"
+                     class="video-thumb"
+                     loading="lazy">
+                <!-- Botón de play superpuesto -->
+                <button class="play-btn" aria-label="Reproducir video">
+                    ▶️
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer informativo -->
+    <footer>
+        <p>&copy; 2026 GameHub Store. Todos los derechos reservados.</p>
+        <p>Contacto: soporte@gamehubstore.cl</p>
+        <p>Síguenos en: <a href="https://twitter.com/gamehubstore" target="_blank">Twitter</a> | <a href="https://facebook.com/gamehubstore" target="_blank">Facebook</a> | <a href="https://instagram.com/gamehubstore" target="_blank">Instagram</a></p>
+    </footer>
+    <script>
+        // Base product data for featured products (mirroring catalogo.js)
+        const baseProductos = [
+            { id: 1, nombre: "Mouse Ajazz 139 Pro", categoria: "perifericos", marca: "ajazz", precio: 45000, stock: 5, imagen: "images/mouse-ajazz.jpg" },
+            { id: 2, nombre: "Pad Mouse ATK Sky XSoft", categoria: "perifericos", marca: "atk", precio: 32000, stock: 3, imagen: "images/Pad Mouse ATK Sky XSoft.jpg" },
+            { id: 3, nombre: "Monitor ASUS TUF 24\"", categoria: "monitores", marca: "asus", precio: 180000, stock: 0, imagen: "images/Monitor ASUS TUF 24.jpg" }
+        ];
+
+        // Carrito compartido entre páginas
+        let carritoLocal = JSON.parse(localStorage.getItem('gamehub_carrito')) || [];
+
+        function agregarAlCarritoInicio(idProducto) {
+            const producto = baseProductos.find(p => p.id === idProducto);
+            if (!producto) return;
+            const itemEnCarrito = carritoLocal.find(item => item.id === idProducto);
+
+            if (itemEnCarrito) {
+                if (itemEnCarrito.cantidad < producto.stock) {
+                    itemEnCarrito.cantidad++;
+                } else {
+                    alert("No hay más stock disponible para este producto.");
+                    return;
+                }
+            } else {
+                carritoLocal.push({
+                    id: producto.id,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    cantidad: 1,
+                    stockMaximo: producto.stock,
+                    imagen: producto.imagen
+                });
+            }
+
+            localStorage.setItem('gamehub_carrito', JSON.stringify(carritoLocal));
+            actualizarContadorCarrito();
+            alert(`${producto.nombre} agregado al carrito.`);
+        }
+
+        function actualizarContadorCarrito() {
+            const totalItems = carritoLocal.reduce((acc, item) => acc + item.cantidad, 0);
+            document.getElementById('contador-carrito').textContent = `(${totalItems})`;
+        }
+
+        // Initialize cart count on load
+        document.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
+    </script>
+</body>
+</html>
