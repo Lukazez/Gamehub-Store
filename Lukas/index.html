@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - GameHub Store</title>
+    <!-- Vinculamos la hoja de estilos externa -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Encabezado con navegación común requerida -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="ordenes.html">Mis Órdenes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Banner principal -->
+        <section class="hero">
+            <h1>Bienvenido a GameHub Store</h1>
+            <p>El mejor hardware y periféricos para tu setup.</p>
+            <a href="catalogo.html" class="boton-primario">Ver Catálogo</a>
+        </section>
+
+        <section class="seccion-video" aria-labelledby="titulo-video">
+            <h2 id="titulo-video">Video destacado</h2>
+            <div class="video-youtube">
+                <iframe
+                    src="https://www.youtube.com/embed/KKFQanrSbdE"
+                    title="Video destacado de GameHub Store"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Carrusel principal -->
+        <section id="productos-destacados" class="marco-productos-destacados">
+            <h2>Productos Destacados</h2>
+            <div class="carousel" id="mainIndexCarousel">
+                <div class="carousel-controls">
+                    <button id="mainPrev" aria-label="Imagen anterior">◀</button>
+                    <button id="mainNext" aria-label="Imagen siguiente">▶</button>
+                </div>
+                <div class="carousel-inner" id="mainIndexInner"></div>
+                <div class="carousel-dots" id="mainDots"></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer informativo -->
+    <footer>
+        <p>&copy; 2026 GameHub Store. Todos los derechos reservados.</p>
+        <p>Contacto: soporte@gamehubstore.cl</p>
+    </footer>
+
+    <script>
+    // Arreglo con las URLs de las imágenes
+    const imagenes = [
+        "https://cl-dam-resizer.ecomm.cencosud.com/unsafe/adaptive-fit-in/3840x0/filters:quality(75)/cl/paris/375091999/variant/699e2cbe4f96a6d9501f691a/images/ed4f28e4-ad68-4523-9616-8bf6081bddb5/375091999-0000-005.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG7a7mtbgb30Uj9Sopxhq4qmuvdSH5tTMYBq0pUU7HDA&s",
+        "https://media.solotodo.com/media/products/1264967_picture_1672268308.jpg"
+    ];
+
+    let indiceActual = 0;
+    let intervaloAuto = null;
+
+    const carouselInner = document.getElementById("mainIndexInner");
+    const prevBtn = document.getElementById("mainPrev");
+    const nextBtn = document.getElementById("mainNext");
+
+    // Función para actualizar la imagen visible
+    function mostrarImagen(index) {
+        carouselInner.innerHTML = `<img src="${imagenes[index]}" alt="Producto destacado ${index + 1}" class="slider-item">`;
+    }
+
+    // Funciones de navegación
+    function siguienteImagen() {
+        indiceActual = (indiceActual === imagenes.length - 1) ? 0 : indiceActual + 1;
+        mostrarImagen(indiceActual);
+    }
+
+    function anteriorImagen() {
+        indiceActual = (indiceActual === 0) ? imagenes.length - 1 : indiceActual - 1;
+        mostrarImagen(indiceActual);
+    }
+
+    // Inicia el cambio automático cada 3000 ms (3 segundos)
+    function iniciarAutoSlide() {
+        intervaloAuto = setInterval(siguienteImagen, 3000);
+    }
+
+    // Reinicia el temporizador cuando el usuario hace clic manualmente
+    function reiniciarTimer() {
+        clearInterval(intervaloAuto);
+        iniciarAutoSlide();
+    }
+
+    // Eventos de los botones de navegación
+    nextBtn.addEventListener("click", () => {
+        siguienteImagen();
+        reiniciarTimer();
+    });
+
+    prevBtn.addEventListener("click", () => {
+        anteriorImagen();
+        reiniciarTimer();
+    });
+
+    // Cargar la primera imagen e iniciar la reproducción automática
+    mostrarImagen(indiceActual);
+    iniciarAutoSlide();
+</script>
+
+</body>
+</html>
