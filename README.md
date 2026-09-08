@@ -1,7 +1,9 @@
 # GameHub Store - Frontend
 
 ## Integrantes
-- Lukas (Lukazez)
+- Lukas
+- Gustavo
+- ariel
 
 ## Requisitos previos
 - Navegador web moderno (Chrome, Firefox, Safari, Edge)
